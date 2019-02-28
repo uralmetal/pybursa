@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quadratic</title>
+</head>
+
+<body>
+    <h3>Квардратное уравнение a*x*x + b*x + c = 0</h3>
+    <ul>
+    <li>a={{ a }}</li>
+    {% if a_view != None %}
+        <p>{{ a_view }}</p>
+    {% endif %}
+    <li>b={{ b }}</li>
+    {% if b_view != None %}
+        <p>{{ b_view }}</p>
+    {% endif %}
+    <li>c={{ c }}</li>
+    {% if c_view != None %}
+        <p>{{ c_view }}</p>
+    {% endif %}
+    </ul>
+    {% if D != None %}
+        <p>Дискриминант: {{ D }}</p>
+        {% if D > 0 %}
+            <p>Квадратное уравнение имеет два действительных корня: x1 = {{ x1 }}, x2 = {{ x2 }}</p>
+        {% elif D == 0 %}
+            <p>Дискриминант равен нулю, квадратное уравнение имеет один действительный корень: x1 = x2 = {{ x1 }}</p>
+        {% else %}
+            <p>Дискриминант меньше нуля, квадратное уравнение не имеет действительных решений</p>
+        {% endif %}
+    {% endif %}
+</body>
+</html>

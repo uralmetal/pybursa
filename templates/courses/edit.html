@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %} Обучение Python - Редактирование Курса {{ course.name|title }}{% endblock %}
+{% block body %}
+    <div class="container">
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <h2>Редактирование курса курса</h2>
+        <form method="post">
+            {{ form_edit.management_form }}
+            {% for form in form_edit %}
+                <div class="form">
+                {{ form.name }}:{{ form }}
+                </div>
+            {% endfor %}
+            {% csrf_token %}
+            <input type="submit">
+        </form>
+    </div>
+{% endblock body %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %} Обучение Python - Курс {{ course.name|title }}{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="jumbotron">
+            <h3>{{ course.name }}</h3>
+            <p>{{ course.description }}</p>
+        </div>
+        {% if course.coach %}
+        <h2>Преподаватели</h2>
+        <div class="container">
+                <h4>Учитель</h4>
+            <h5><a href="{% url 'coaches:detail' course.coach.id %}">{{ course.coach.user.first_name }}
+                {{ course.coach.user.last_name }}</a></h5>
+                <p>{{ course.coach.description }}</p>
+        </div>
+        {% endif %}
+        {% if course.assistant %}
+        <div class="container">
+            <h4>Ассистент</h4>
+            <h5><a href="{% url 'coaches:detail' course.assistant.id %}">{{ course.assistant.user.first_name }}
+                {{ course.assistant.user.last_name }}</a></h5>
+            <p>{{ course.assistant.description }}</p>
+        </div>
+        {% endif %}
+        <h2>План курса</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-sm">
+                <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Тема</th>
+                      <th>Описание</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for lesson in lessons %}
+                        <tr>
+                            <td>{{ lesson.order }}</td>
+                            <td>{{ lesson.subject }}</td>
+                            <td>{{ lesson.description|truncatechars:32 }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock body %}

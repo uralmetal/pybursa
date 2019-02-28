@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %} Обучение Python - Курсы{% endblock %}
+{% block body %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <div class="container">
+        <div class="jumbotron">
+            <h3>Web-Professional</h3>
+            <p>Мы специализируемся на Web-технологиях. В нашей копании самые лучшие и учителя и специалисты
+            по Django, Python и другим смежным технологиям.</p>
+        </div>
+        <h2>Выбирайте курс на котором будете учиться!</h2>
+        <p><a class="btn btn-success" href="{% url 'courses:add' %}" role="button">Добавить курс</a></p>
+        <div class="table-responsive">
+            <table class="table table-striped table-sm">
+                <thead>
+                    <tr>
+                      <th>Курс</th>
+                      <th>Описание</th>
+                      <th></th>
+                      <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for course in courses %}
+                        <tr>
+                            <td><a href="{% url 'courses:detail' course.id %}">{{ course.name|upper }}</a></td>
+                            <td>{{ course.short_description|title  }}</td>
+                            <td><a class="btn btn-primary" href="{% url 'courses:edit' course.id %}" role="button">
+                                Редактировать</a></td>
+                            <td><a class="btn btn-danger" href="{% url 'courses:remove' course.id %}" role="button">
+                                Удалить</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock body %}

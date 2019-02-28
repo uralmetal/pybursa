@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+    <a class="navbar-brand" href="/"><img src="https://i.stack.imgur.com/wn5mB.png"
+                                          width="40" height="40" alt="Курсы веба для профи"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'home' %}">Главная</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'contacs' %}">Контакты</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'students:list' %}">Студенты</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'feedbacks:form' %}">Обратная связь</a>
+            </li>
+        </ul>
+    </div>
+</nav>

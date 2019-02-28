@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %} Обучение Python - Преподаватель {{ coach.user.first_name|title }} {{ coach.user.last_name|title }}{% endblock %}
+{% block body %}
+    <div class="container">
+        <h2>{{ coach.user.first_name }} {{ coach.user.last_name }}</h2>
+        <table class="table">
+            <tbody>
+                <tr>
+                  <td>Дата рождения</td>
+                  <td>{{ coach.date_of_birth|date:"d F, Y" }}</td>
+                </tr>
+                <tr>
+                  <td>Адрес</td>
+                  <td>{{ coach.address }}</td>
+                </tr>
+                <tr>
+                  <td>Почта</td>
+                  <td>{{ coach.user.email }}</td>
+                </tr>
+                <tr>
+                  <td>Skype</td>
+                  <td>{{ coach.skype }}</td>
+                </tr>
+                <tr>
+                  <td>Телефон</td>
+                  <td>{{ coach.phone }}</td>
+                </tr>
+                <tr>
+                  <td>Курсы учитель</td>
+                  <td>
+                      {% for course in teacher %}
+                            <p><a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a> студенты курса
+                                <a href="{% url 'students:list' %}?course_id={{ course.id }}">
+                                <img src="http://icons-for-free.com/free-icons/png/512/293674.png"
+                            width="20" height="20" alt="link"></a></p>
+                    {% endfor %}
+                  </td>
+                </tr>
+                <tr>
+                  <td>Курсы ассистент</td>
+                  <td>
+                      {% for course in assistant %}
+                        <p><a href="{% url 'courses:detail' course.id %}">{{ course.name }}</a> студенты курса
+                                <a href="{% url 'students:list' %}?course_id={{ course.id }}">
+                                <img src="http://icons-for-free.com/free-icons/png/512/293674.png"
+                            width="20" height="20" alt="link"></a></p>
+                    {% endfor %}
+                  </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock body %}
